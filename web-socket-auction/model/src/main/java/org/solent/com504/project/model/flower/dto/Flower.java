@@ -6,6 +6,10 @@
 package org.solent.com504.project.model.flower.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -19,8 +23,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@Entity
 public class Flower {
-
+    
+    private Long id;
+    
     private String symbol;
     private String synonymSymbol;
     private String scientificNamewithAuthor;
@@ -40,6 +47,16 @@ public class Flower {
         this.dataUrl = dataUrl;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     @Schema(description = "plants.usda.gov plant identification Symbol")
     public String getSymbol() {
         return symbol;

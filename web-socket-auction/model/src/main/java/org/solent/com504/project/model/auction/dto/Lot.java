@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -90,6 +91,8 @@ public class Lot {
         this.bids = bids;
     }
 
+    
+    @OneToOne //@@@ Added this
     public Bid getWinningBid() {
         return winningBid;
     }
@@ -98,6 +101,7 @@ public class Lot {
         this.winningBid = winningBid;
     }
 
+    @OneToOne // @@@ Added this
     public Flower getFlowerType() {
         return flowerType;
     }
@@ -130,6 +134,7 @@ public class Lot {
         this.soldPrice = soldPrice;
     }
 
+    @OneToOne //@@@ added this
     public Party getSeller() {
         return seller;
     }
@@ -138,6 +143,7 @@ public class Lot {
         this.seller = seller;
     }
 
+    @OneToOne //@@@ One to one relation needed here.
     public Party getBuyer() {
         return buyer;
     }

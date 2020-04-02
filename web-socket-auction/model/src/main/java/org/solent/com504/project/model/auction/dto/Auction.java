@@ -96,7 +96,8 @@ public class Auction {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
+    @OneToMany //@@@ added this
     public List<Party> getRegisteredPartys() {
         return registeredPartys;
     }
