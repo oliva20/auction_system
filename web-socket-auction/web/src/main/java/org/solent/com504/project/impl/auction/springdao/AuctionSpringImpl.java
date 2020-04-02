@@ -34,7 +34,7 @@ public class AuctionSpringImpl implements AuctionDAO {
 
     @Override
     public Auction findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return auctionRep.getOne(id);
     }
 
     @Override
