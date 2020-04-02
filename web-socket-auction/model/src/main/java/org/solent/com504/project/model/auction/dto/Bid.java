@@ -4,6 +4,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,6 +18,7 @@ import org.solent.com504.project.model.party.dto.Party;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@Entity
 public class Bid {
 
     private Date time;
@@ -30,6 +36,8 @@ public class Bid {
     // should be unique at time of creation but not best solution
     private String biduuid =UUID.randomUUID().toString(); 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -45,7 +53,8 @@ public class Bid {
     public void setBidder(Party bidder) {
         this.bidder = bidder;
     }
-
+    
+    @ManyToOne
     public Lot getLot() {
         return lot;
     }

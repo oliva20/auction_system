@@ -7,7 +7,7 @@ package org.solent.com504.project.impl.auction.web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.solent.com504.project.impl.auction.dao.MockServiceObjectFactory;
+import org.solent.com504.project.impl.auction.springdao.MockServiceObjectFactory;
 import org.solent.com504.project.impl.auction.service.Initialise;
 import org.solent.com504.project.model.auction.message.MessageService;
 import org.solent.com504.project.model.auction.service.AuctionService;

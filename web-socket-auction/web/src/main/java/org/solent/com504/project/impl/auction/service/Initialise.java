@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.solent.com504.project.impl.auction.dao.MockServiceObjectFactory;
+import org.solent.com504.project.impl.auction.springdao.MockServiceObjectFactory;
 import org.solent.com504.project.model.auction.dao.AuctionDAO;
 import org.solent.com504.project.model.auction.dao.BidDAO;
 import org.solent.com504.project.model.auction.dao.LotDAO;

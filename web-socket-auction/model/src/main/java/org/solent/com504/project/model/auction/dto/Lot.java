@@ -1,11 +1,16 @@
 package org.solent.com504.project.model.auction.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -19,6 +24,7 @@ import org.solent.com504.project.model.flower.dto.Flower;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@Entity
 public class Lot {
 
     private Long id;
@@ -65,6 +71,8 @@ public class Lot {
     @XmlTransient
     private String currentBidderUuid;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -72,7 +80,8 @@ public class Lot {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
+    @OneToMany(fetch = FetchType.LAZY)
     public List<Bid> getBids() {
         return bids;
     }

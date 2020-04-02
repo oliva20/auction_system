@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.project.impl.auction.dao;
+package org.solent.com504.project.impl.auction.springdao;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,18 +11,24 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.solent.com504.project.impl.auction.springdata.AuctionRepository;
 import org.solent.com504.project.model.auction.dao.AuctionDAO;
 import org.solent.com504.project.model.auction.dto.Auction;
 import org.solent.com504.project.model.auction.dto.AuctionOrLotStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
- * @author cgallen
+ * @author andre
  */
-public class AuctionMockDAO implements AuctionDAO {
+public class AuctionSpringImpl implements AuctionDAO {
 
-    final static Logger LOG = LogManager.getLogger(AuctionMockDAO.class);
-
+    final static Logger LOG = LogManager.getLogger(AuctionDAO.class);
+    
+    @Autowired
+    private AuctionRepository auctionRep;
+    
+    
     // hashmap of key auctionuuid, Auction - would replace with dao
     private LinkedHashMap<String, Auction> auctionMap = new LinkedHashMap();
 
@@ -34,7 +40,6 @@ public class AuctionMockDAO implements AuctionDAO {
     @Override
     public Auction save(Auction auction) {
         LOG.debug("save(auction)=" + auction);
-
         auctionMap.put(auction.getAuctionuuid(), auction);
         return auction;
     }
@@ -51,17 +56,17 @@ public class AuctionMockDAO implements AuctionDAO {
 
     @Override
     public void deleteById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        auctionRep.deleteById(id);
     }
 
     @Override
     public void delete(Auction auction) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        auctionRep.delete(auction);
     }
 
     @Override
     public void deleteAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        auctionRep.deleteAll();
     }
 
     @Override
@@ -83,6 +88,19 @@ public class AuctionMockDAO implements AuctionDAO {
             }
         }
         return auctionList;
+    }
+    
+    //@@@: Add a function to persist data to the database.
+    //@@@: Needs testing
+    public void saveAuctionMap(){
+        
+        if(!(auctionMap.isEmpty())) {
+               List<Auction> auctions = findAll();
+               for(Auction auction : auctions){
+                   LOG.debug("Saving map: (auction)=" + auction);
+                   auctionRep.save(auction);
+               }
+        }
     }
 
 }

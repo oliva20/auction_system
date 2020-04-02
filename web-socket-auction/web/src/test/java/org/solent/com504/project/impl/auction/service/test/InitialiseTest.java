@@ -7,7 +7,7 @@ package org.solent.com504.project.impl.auction.service.test;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.solent.com504.project.impl.auction.dao.MockServiceObjectFactory;
+import org.solent.com504.project.impl.auction.springdao.MockServiceObjectFactory;
 import org.solent.com504.project.impl.auction.service.Initialise;
 
 /**

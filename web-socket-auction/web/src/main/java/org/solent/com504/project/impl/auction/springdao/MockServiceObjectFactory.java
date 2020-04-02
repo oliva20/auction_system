@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.project.impl.auction.dao;
+package org.solent.com504.project.impl.auction.springdao;
 
 import org.solent.com504.project.impl.auction.service.SimpleMessageServiceImpl;
 import java.text.SimpleDateFormat;
@@ -37,7 +37,7 @@ public class MockServiceObjectFactory {
 
     private PartyDAO partyDAO = new PartyMockDAO();
 
-    private AuctionDAO auctionDAO = new AuctionMockDAO();
+    private AuctionDAO auctionDAO = new AuctionSpringImpl();
 
     private LotDAO lotDao = new LotMockDAO(auctionDAO);
 
