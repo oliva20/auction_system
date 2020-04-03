@@ -99,6 +99,7 @@ public class AuctionSpringDAOImpl implements AuctionDAO {
     * Persist the auction map to the database with this method
     *
     */
+    @Override
     public void saveAuctionMap(){
         if(auctionRep != null){
         if(!(auctionMap.isEmpty())) {

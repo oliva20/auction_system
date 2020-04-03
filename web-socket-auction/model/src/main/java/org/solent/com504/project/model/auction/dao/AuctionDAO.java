@@ -21,5 +21,6 @@ public interface AuctionDAO {
     public Auction findByAuctionuuid(String auctionuuid);
     
     public List<Auction> findActiveOrScheduledBefore(Date time);
-
+    
+    public void saveAuctionMap();
 }

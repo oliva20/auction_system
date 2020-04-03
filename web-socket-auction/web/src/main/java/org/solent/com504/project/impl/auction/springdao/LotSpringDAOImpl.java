@@ -9,21 +9,28 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.solent.com504.project.impl.auction.springdata.LotRepository;
 import org.solent.com504.project.model.auction.dao.AuctionDAO;
 import org.solent.com504.project.model.auction.dao.LotDAO;
 import org.solent.com504.project.model.auction.dto.Auction;
 import org.solent.com504.project.model.auction.dto.Lot;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
- * @author cgallen
+ * @author andre
  */
-public class LotMockDAO implements LotDAO {
-      final static Logger LOG = LogManager.getLogger(LotMockDAO.class);
+@Component
+public class LotSpringDAOImpl implements LotDAO {
+      final static Logger LOG = LogManager.getLogger(LotSpringDAOImpl.class);
 
     private AuctionDAO auctionDAO;
-
-    public LotMockDAO(AuctionDAO auctionDAO) {
+    
+    @Autowired
+    private LotRepository lotRepository = null;
+    
+    public LotSpringDAOImpl(AuctionDAO auctionDAO) {
         this.auctionDAO = auctionDAO;
     }
 
