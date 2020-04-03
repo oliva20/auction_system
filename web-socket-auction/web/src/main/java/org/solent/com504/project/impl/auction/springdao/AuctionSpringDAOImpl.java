@@ -22,20 +22,24 @@ import org.springframework.stereotype.Component;
  *
  * @author andre
  */
-public class AuctionSpringImpl implements AuctionDAO {
+@Component
+public class AuctionSpringDAOImpl implements AuctionDAO {
 
     final static Logger LOG = LogManager.getLogger(AuctionDAO.class);
     
     @Autowired
-    private AuctionRepository auctionRep;
-    
+    AuctionRepository auctionRep = null;
     
     // hashmap of key auctionuuid, Auction - would replace with dao
     private LinkedHashMap<String, Auction> auctionMap = new LinkedHashMap();
-
+    
     @Override
     public Auction findById(Long id) {
-        return auctionRep.getOne(id);
+        if(auctionRep != null){
+            return auctionRep.getOne(id);
+        } else {
+            throw new NullPointerException();
+        }
     }
 
     @Override
@@ -91,16 +95,22 @@ public class AuctionSpringImpl implements AuctionDAO {
         return auctionList;
     }
     
-    //@@@: Add a function to persist data to the database.
-    //@@@: Needs testing
+    /*
+    * Persist the auction map to the database with this method
+    *
+    */
     public void saveAuctionMap(){
-        
+        if(auctionRep != null){
         if(!(auctionMap.isEmpty())) {
                List<Auction> auctions = findAll();
                for(Auction auction : auctions){
                    LOG.debug("Saving map: (auction)=" + auction);
                    auctionRep.save(auction);
                }
+        }
+        } else {
+            LOG.debug("AuctionRep = " + auctionRep);
+            throw new NullPointerException();
         }
     }
 

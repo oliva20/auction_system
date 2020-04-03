@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.project.impl.auction.service.test;
+package org.solent.com504.project.impl.auction.springdao;
 
 import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +21,8 @@ import static org.junit.Assert.assertEquals;
 
 /**
  *
- * @author andre
+ * @author Andre
+ * This article explains junit very well -> https://www.javatpoint.com/junit-tutorial
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring.xml"})
@@ -30,7 +31,7 @@ public class AuctionRepositoryTest {
 
     @Autowired
     private AuctionRepository auctionRep = null;
-
+    
     @Before
     public void before() {
         LOG.debug("before test running");
@@ -40,7 +41,7 @@ public class AuctionRepositoryTest {
     
     @Transactional
     @Test
-    public void test(){
+    public void testFindAuction(){
        LOG.debug("@@@ Beginning test");
        
        Auction auction1 = new Auction();
@@ -51,7 +52,16 @@ public class AuctionRepositoryTest {
        Long id = auction1.getId();
        Auction auction2 = auctionRep.getOne(id);
        
+       assertNotNull(auction2);
        assertEquals(auction1, auction2);
        
     }
+    
+        
+    @Transactional
+    @Test
+    public void testFindAllAuctions(){
+        
+    }
+    
 }

@@ -37,7 +37,7 @@ public class MockServiceObjectFactory {
 
     private PartyDAO partyDAO = new PartyMockDAO();
 
-    private AuctionDAO auctionDAO = new AuctionSpringImpl();
+    private AuctionDAO auctionDAO = new AuctionSpringDAOImpl();
 
     private LotDAO lotDao = new LotMockDAO(auctionDAO);
 
