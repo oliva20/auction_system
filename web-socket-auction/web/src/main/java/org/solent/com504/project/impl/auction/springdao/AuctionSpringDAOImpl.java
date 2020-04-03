@@ -95,6 +95,11 @@ public class AuctionSpringDAOImpl implements AuctionDAO {
         return auctionList;
     }
     
+    @Override 
+    public void updateAuction(Auction auction) {
+        auctionMap.replace(auction.getAuctionuuid(), auction);
+    }
+    
     /*
     * Persist the auction map to the database with this method
     *

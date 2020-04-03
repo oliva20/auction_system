@@ -23,7 +23,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class LotSpringDAOImpl implements LotDAO {
-      final static Logger LOG = LogManager.getLogger(LotSpringDAOImpl.class);
+    
+    final static Logger LOG = LogManager.getLogger(LotSpringDAOImpl.class);
 
     private AuctionDAO auctionDAO;
     
@@ -40,8 +41,17 @@ public class LotSpringDAOImpl implements LotDAO {
     }
 
     @Override
-    public Lot save(Lot lot) {
-        // CANNOT SAVE LOT BECAUSE DONT KNOW WHICH AUCTION 
+    public Lot save(Lot lot, String auctionuuid) {
+        Auction auction = auctionDAO.findByAuctionuuid(auctionuuid);
+        List<Lot> lots; 
+        if(auction != null) {
+            lots = auction.getLots();
+        } else {
+           lots = new ArrayList<>(); 
+        }
+        lots.add(lot); 
+        auction.setLots(lots);
+        auctionDAO.updateAuction(auction);
         return lot;
     }
 

@@ -7,7 +7,7 @@ public interface LotDAO {
 
     public Lot findById(Long id);
 
-    public Lot save(Lot lot);
+    public Lot save(Lot lot, String auctionuuid);
 
     public List<Lot> findAll();
 

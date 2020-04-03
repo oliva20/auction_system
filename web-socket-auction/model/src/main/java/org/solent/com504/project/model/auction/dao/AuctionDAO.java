@@ -23,4 +23,6 @@ public interface AuctionDAO {
     public List<Auction> findActiveOrScheduledBefore(Date time);
     
     public void saveAuctionMap();
+    
+    public void updateAuction(Auction auction);
 }

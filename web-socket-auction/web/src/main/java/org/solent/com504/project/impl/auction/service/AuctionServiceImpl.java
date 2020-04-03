@@ -162,7 +162,7 @@ public class AuctionServiceImpl implements AuctionService, MessageListener {
         lot.setQuantity(quantity);
         lot.setReservePrice(reserveprice);
         
-        lot = lotDAO.save(lot);
+        lotDAO.save(lot, auctionuuid);
         return lot;
     }
 
@@ -453,7 +453,7 @@ public class AuctionServiceImpl implements AuctionService, MessageListener {
                     bid = bidDAO.save(bid);
                 }
                 
-                lotDAO.save(foundlot);
+                lotDAO.save(foundlot, auctionuuid);
                 break;
             }
         }

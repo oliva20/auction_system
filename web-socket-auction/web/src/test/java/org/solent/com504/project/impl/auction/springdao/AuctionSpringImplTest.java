@@ -6,6 +6,7 @@
 package org.solent.com504.project.impl.auction.springdao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
@@ -90,9 +91,28 @@ public class AuctionSpringImplTest {
     }
  
     public void testFindByStartTime(){ 
-    
+        
     }
     
+    @Test
+    public void testUpdateAuction() {
+        //test updating auction description
+        Auction a1 = new Auction(); 
+        a1.setAuctionStatus(AuctionOrLotStatus.ACTIVE);
+        a1.setDescription("@@@ Description: NOT UPDATED");
+        a1.setStartTime(new Date());
+
+        Auction expAuction = auctionSpringRep.save(a1);
+        //change here
+        expAuction.setDescription("@@@ Description: UPDATED");
+        auctionSpringRep.updateAuction(expAuction);
+        LOG.debug(auctionSpringRep.findByAuctionuuid(expAuction.getAuctionuuid()).toString());
+        
+        //find the auction and compare
+        Auction updAuction = auctionSpringRep.findByAuctionuuid(expAuction.getAuctionuuid());
+        
+        assertEquals(updAuction, expAuction);
+    }
     
     public List<Auction> storeDummyAuctions(int num) {
         List<Auction> auctions = new ArrayList<Auction>(); 
