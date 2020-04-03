@@ -16,6 +16,7 @@ import org.solent.com504.project.model.auction.dao.AuctionDAO;
 import org.solent.com504.project.model.auction.dto.Auction;
 import org.solent.com504.project.model.auction.dto.AuctionOrLotStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *

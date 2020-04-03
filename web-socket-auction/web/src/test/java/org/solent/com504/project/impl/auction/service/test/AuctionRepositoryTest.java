@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
- * @author aang
+ * @author andre
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/spring.xml"})
@@ -37,6 +37,6 @@ public class AuctionRepositoryTest {
     
     @Test
     public void test(){
-        
+       LOG.debug("@@@ Just testing");
     }
 }
