@@ -5,6 +5,7 @@
  */
 package org.solent.com504.project.impl.auction.service.test;
 
+import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.assertNotNull;
@@ -12,9 +13,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.solent.com504.project.impl.auction.springdata.AuctionRepository;
+import org.solent.com504.project.model.auction.dto.Auction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -35,8 +38,20 @@ public class AuctionRepositoryTest {
         LOG.debug("before test complete");
     }
     
+    @Transactional
     @Test
     public void test(){
-       LOG.debug("@@@ Just testing");
+       LOG.debug("@@@ Beginning test");
+       
+       Auction auction1 = new Auction();
+       auctionRep.save(auction1);
+       
+       LOG.debug("@@@ Auction1 = " + auction1.toString());
+       
+       Long id = auction1.getId();
+       Auction auction2 = auctionRep.getOne(id);
+       
+       assertEquals(auction1, auction2);
+       
     }
 }
