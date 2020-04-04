@@ -45,6 +45,8 @@
                             <!-- send user to modify the current auction TODO create auction modify jsp -->
                             <form action="./viewModifyAuction" method="POST">
                                 <input type="hidden" name="auctionId" value="<%=auction.getId() %>">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <input type="hidden" name="createAuction" value="false">
                                 <button class="btn" type="submit">Modify Auction</button>
                             </form>
                         </td>
