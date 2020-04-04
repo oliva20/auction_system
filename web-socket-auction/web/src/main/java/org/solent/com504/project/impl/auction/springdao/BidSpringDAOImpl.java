@@ -8,49 +8,58 @@ package org.solent.com504.project.impl.auction.springdao;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.solent.com504.project.impl.auction.springdata.BidRepository;
 
 import org.solent.com504.project.model.auction.dao.BidDAO;
 import org.solent.com504.project.model.auction.dto.Bid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
- * @author cgallen
+ * @author andre
  */
-public class BidMockDAO implements BidDAO {
-
-    final static Logger LOG = LogManager.getLogger(BidMockDAO.class);
-
+@Component
+public class BidSpringDAOImpl implements BidDAO {
+    
+    final static Logger LOG = LogManager.getLogger(BidSpringDAOImpl.class);
+    
+    @Autowired
+    private BidRepository bidRepository = null; 
+    
     @Override
     public Bid findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bidRepository.getOne(id);
     }
 
     @Override
     public Bid save(Bid bid) {
        LOG.debug("logging bid: "+bid);
+       bidRepository.save(bid);
        return bid;
     }
 
     @Override
     public List<Bid> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bidRepository.findAll();
     }
 
     @Override
     public void deleteById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        bidRepository.deleteById(id);
     }
 
     @Override
     public void delete(Bid bid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        bidRepository.delete(bid);
     }
 
     @Override
     public void deleteAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        bidRepository.deleteAll();
     }
 
+    //@@@ TODO
     @Override
     public Bid findByBiduuid(String biduuid) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

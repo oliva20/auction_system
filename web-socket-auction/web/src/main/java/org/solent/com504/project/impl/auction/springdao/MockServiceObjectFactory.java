@@ -41,7 +41,7 @@ public class MockServiceObjectFactory {
 
     private LotDAO lotDao = new LotSpringDAOImpl(auctionDAO);
 
-    private BidDAO bidDao = new BidMockDAO();
+    private BidDAO bidDao = new BidSpringDAOImpl();
 
 
     private MessageService messagesOut = new SimpleMessageServiceImpl();
