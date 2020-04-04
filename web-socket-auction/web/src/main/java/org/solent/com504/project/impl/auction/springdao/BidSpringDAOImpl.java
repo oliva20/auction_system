@@ -25,7 +25,7 @@ public class BidSpringDAOImpl implements BidDAO {
     final static Logger LOG = LogManager.getLogger(BidSpringDAOImpl.class);
     
     @Autowired
-    private BidRepository bidRepository = null; 
+    private BidRepository bidRepository = null; //@@@ autowired not working it is null;
     
     @Override
     public Bid findById(Long id) {
@@ -35,7 +35,9 @@ public class BidSpringDAOImpl implements BidDAO {
     @Override
     public Bid save(Bid bid) {
        LOG.debug("logging bid: "+bid);
-       bidRepository.save(bid);
+       if(bidRepository != null) {
+        bidRepository.save(bid); 
+       }
        return bid;
     }
 
@@ -59,10 +61,9 @@ public class BidSpringDAOImpl implements BidDAO {
         bidRepository.deleteAll();
     }
 
-    //@@@ TODO
     @Override
     public Bid findByBiduuid(String biduuid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bidRepository.getBidByUuid(biduuid);
     }
 
 }

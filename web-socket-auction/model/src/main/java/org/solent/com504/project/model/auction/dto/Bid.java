@@ -47,7 +47,7 @@ public class Bid {
         this.id = id;
     }
 
-    @OneToOne //@@@ added this
+    @OneToOne 
     public Party getBidder() {
         return bidder;
     }

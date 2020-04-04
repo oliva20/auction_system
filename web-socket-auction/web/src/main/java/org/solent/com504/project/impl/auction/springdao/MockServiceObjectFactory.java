@@ -43,7 +43,6 @@ public class MockServiceObjectFactory {
 
     private BidDAO bidDao = new BidSpringDAOImpl();
 
-
     private MessageService messagesOut = new SimpleMessageServiceImpl();
     
     private BankingService bankService = new BankingServiceImpl();
