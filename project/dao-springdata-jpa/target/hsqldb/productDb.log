@@ -1,0 +1,11 @@
+/*C8*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C9*/SET SCHEMA PUBLIC
+alter table Auction_Lot drop constraint UK_coa4u7ju4h1s2v3vaxc5fxr4k
+alter table Auction_Lot add constraint UK_coa4u7ju4h1s2v3vaxc5fxr4k unique (lots_id)
+alter table Lot_Bid drop constraint UK_ppfjw263md5dd2rro8d0f7qbt
+alter table Lot_Bid add constraint UK_ppfjw263md5dd2rro8d0f7qbt unique (bids_id)
+DISCONNECT
+/*C10*/SET SCHEMA PUBLIC
+ROLLBACK
+DISCONNECT

@@ -5,7 +5,7 @@
     <parent>
         <groupId>solent.ac.uk.ood.examples</groupId>
         <artifactId>project</artifactId>
-        <version>1.7-SNAPSHOT</version>
+        <version>1.5-SNAPSHOT</version>
     </parent>
 
     <artifactId>project-model</artifactId>
@@ -19,13 +19,6 @@
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        
-        <!-- used to annotate model with swagger annotations -->
-        <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations</artifactId>
             <scope>provided</scope>
         </dependency>
         

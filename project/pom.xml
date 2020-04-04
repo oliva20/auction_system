@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>solent.ac.uk.ood.examples</groupId>
     <artifactId>project</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <version>1.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     
     <properties>
@@ -35,26 +35,6 @@
         <module>client-rest</module>
         <module>web-client</module>
     </modules>
-    
-    <build>
-        <pluginManagement>
-               
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.surefire.plugin.version}</version>
-                    <configuration>
-                        <excludes>
-                            <!-- prevent tests running in any package with manual filder. These are manual one off development tests -->
-                            <exclude>**/manual/*.java</exclude>
-                        </excludes>
-                    </configuration>
-                </plugin>
-            </plugins>
-   
-        </pluginManagement>
-    </build>
     
     <dependencyManagement>
         <dependencies>
@@ -124,11 +104,6 @@
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-jaxrs2-servlet-initializer</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-annotations</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
             

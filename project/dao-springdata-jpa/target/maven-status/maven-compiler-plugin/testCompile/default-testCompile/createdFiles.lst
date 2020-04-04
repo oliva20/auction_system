@@ -1,0 +1,7 @@
+org\solent\com504\project\impl\dao\party\springdata\test\PartyRepositoryTest.class
+org\solent\com504\project\impl\dao\spring\test\PartyDAOTest.class
+org\solent\com504\project\impl\dao\user\spring\test\RoleDAOTest.class
+org\solent\com504\project\impl\dao\user\spring\test\UserDAOTest.class
+org\solent\com504\project\impl\dao\user\springdata\test\UserRepositoryTest.class
+org\solent\com504\project\impl\dao\auction\springdata\test\AuctionRepositoryTest.class
+org\solent\com504\project\impl\dao\user\springdata\test\RoleRepositoryTest.class
