@@ -37,7 +37,7 @@ public class LotSpringDAOImpl implements LotDAO {
 
     @Override
     public Lot findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lotRepository.getOne(id);
     }
 
     @Override
@@ -68,17 +68,17 @@ public class LotSpringDAOImpl implements LotDAO {
 
     @Override
     public void deleteById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lotRepository.deleteById(id);
     }
 
     @Override
     public void delete(Lot lot) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lotRepository.delete(lot);
     }
 
     @Override
     public void deleteAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lotRepository.deleteAll();
     }
 
     @Override

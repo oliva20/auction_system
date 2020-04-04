@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,7 +51,6 @@ public class LotSpringImplTest {
     public void testFindById(){
         Lot expLot = new Lot();
         expLot.setAuctionType(AuctionType.NORMAL);
-        expLot.setId(new Long(1));
         
         lotRep.save(expLot);
         
@@ -58,5 +58,12 @@ public class LotSpringImplTest {
         
         assertEquals(expLot, returnedLot);
         
+    }
+
+    @Transactional
+    @Test
+    public void testFindByLotuuid() {
+        Lot lot = lotSpringRep.findByLotuuid("fake-string-uuid");
+        assertNull(lot);
     }
 }
