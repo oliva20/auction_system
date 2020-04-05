@@ -24,7 +24,6 @@
 
     <div>
         <h1>Manage Auctions</h1>
-        <!--<p>showing ${partyListSize} partys: </p>-->
         <table class="table">
             <thead>
                 <tr>

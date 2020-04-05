@@ -1,18 +1,23 @@
 package org.solent.com504.project.impl.web;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.solent.com504.project.impl.validator.UserValidator;
+import org.solent.com504.project.model.auction.dto.Auction;
 import org.solent.com504.project.model.auction.service.AuctionService;
+import org.solent.com504.project.model.lot.dto.Lot;
 import org.solent.com504.project.model.party.dto.Address;
 import org.solent.com504.project.model.party.dto.Party;
 import org.solent.com504.project.model.party.dto.PartyRole;
@@ -40,6 +45,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Transactional
 public class UserController {
 
+    private Auction blankAuction = new Auction();
+    
     final static Logger LOG = LogManager.getLogger(UserController.class);
 
     {
@@ -322,14 +329,77 @@ public class UserController {
     }
     
     // AUCTION MANAGEMENT
+    
+    // Create new auction object
+    // Populate auction object with lots
+    // Save auction to database then empty the auction object from memory
     @RequestMapping(value = {"/viewModifyAuction"}, method = RequestMethod.POST)
     public String updateAuction(Model model,
             @RequestParam("createAuction") String createAuction,
+            @RequestParam(value = "createLot", required = false) String createLot,  // Parameters here and below are for lot creation
+            @RequestParam(value = "lotDuration", required = false) String lotDuration,  
+            @RequestParam(value = "lotReservedPrice", required = false) String lotReservedPrice,
+            @RequestParam(value = "lotHighestPrice", required = false) String lotHighestPrice,
+            @RequestParam(value = "lotGrade", required = false) String lotGrade,
+            @RequestParam(value = "lotLifespan", required = false) String lotLifespan,
+            @RequestParam(value = "lotQuantity", required = false) String lotQuantity,
             Authentication authentication){
         
         model.addAttribute("createAuction",createAuction);
+        model.addAttribute("blankAuction", blankAuction);
+        
+        LOG.debug("COWABUNGA " + createLot);
+        // Check if createLot is instanciated, if not then carry on. if so then add created lot to the blank auction
+        if(createLot != null){
+            LOG.debug("COWABUNGA WE'RE IN THE IF STATEMENT");
+            if("true".equals(createLot)){
+                LOG.debug("COWABUNGA WERE CREATING THE LOT");
+                Lot lotBlank = new Lot();
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                Set<Lot> lots = new HashSet<>();
+                
+                try{
+                    lotBlank.setDuration(Math.toIntExact(sdf.parse(lotDuration).getTime()));
+                }catch(Exception e){
+                    LOG.debug(e);
+                }
+                lotBlank.setGrade(lotGrade);
+                lotBlank.setHighestBidPrice(Double.valueOf(lotHighestPrice));
+                lotBlank.setReservedPrice(Double.valueOf(lotReservedPrice));
+                lotBlank.setLife_days(Integer.valueOf(lotLifespan));
+                lotBlank.setQuantity(Integer.valueOf(lotQuantity));
+                
+                if(blankAuction.getLots() != null){ // lots set will be null if first creation of auction
+                    lots.addAll(blankAuction.getLots());
+                }
+                lots.add(lotBlank);
+                blankAuction.setLots(lots);
+                model.addAttribute("blankAuction", blankAuction);
+                
+                try{
+                    LOG.debug("COWABUNGA " + lotBlank.getGrade());
+                }catch(Exception e){
+
+                }
+            }
+        }
+        
+        
         
         return "viewModifyAuction";
+    }
+    
+    // AUCTION LOT MANAGEMENT
+    @RequestMapping(value = {"/viewModifyLot"}, method = RequestMethod.POST)
+    public String updateLot(Model model,
+            @RequestParam("createLot") String createLot,
+            Authentication authentication){
+        
+        model.addAttribute("createLot",createLot);
+        
+        
+        
+        return "viewModifyLot";
     }
 
     // PARTY MANAGEMENT
