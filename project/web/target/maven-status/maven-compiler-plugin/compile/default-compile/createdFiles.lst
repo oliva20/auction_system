@@ -1,0 +1,5 @@
+org\solent\com504\project\impl\web\UserController.class
+org\solent\com504\project\impl\rest\RestService.class
+org\solent\com504\project\impl\web\ViewController.class
+org\solent\com504\project\impl\rest\RestApp.class
+org\solent\com504\project\impl\validator\UserValidator.class

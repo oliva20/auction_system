@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<replyMessage>
+    <partylist>
+        <party>
+            <partyRole>UNDEFINED</partyRole>
+            <address>
+                <number></number>
+                <addressLine1>home for me</addressLine1>
+                <addressLine2></addressLine2>
+                <county></county>
+                <country></country>
+                <postcode></postcode>
+                <latitude>0.0</latitude>
+                <longitude>0.0</longitude>
+                <telephone></telephone>
+                <mobile></mobile>
+            </address>
+            <partyStatus>ACTIVE</partyStatus>
+            <uuid>171476a9fba</uuid>
+            <enabled>true</enabled>
+            <users/>
+        </party>
+    </partylist>
+    <auctionlist>
+        <auction>
+            <lots>
+                <duration>2</duration>
+                <grade>Grade 1</grade>
+                <highestBidPrice>0.0</highestBidPrice>
+                <reservedPrice>0.0</reservedPrice>
+            </lots>
+        </auction>
+        <auction>
+            <lots>
+                <duration>2</duration>
+                <grade>Grade 1</grade>
+                <highestBidPrice>0.0</highestBidPrice>
+                <reservedPrice>0.0</reservedPrice>
+            </lots>
+        </auction>
+    </auctionlist>
+</replyMessage>

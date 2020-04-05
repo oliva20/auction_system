@@ -5,6 +5,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="org.solent.com504.project.model.service.ServiceFacade"%>
+<%@page import="org.solent.com504.project.model.auction.service.AuctionService"%>
 
 
 <%
@@ -18,6 +19,7 @@
 
     // accessing service 
     ServiceFacade serviceFacade = (ServiceFacade) request.getAttribute("serviceFacade");
+    AuctionService auctionServ = (AuctionService) request.getAttribute("auctionService");
 
     // accessing request parameters
     String actionStr = request.getParameter("action");
@@ -49,6 +51,9 @@
         <p>The time is: <%= new Date().toString()%> (note page is auto refreshed every 20 seconds)</p>
 
         <p>Getting heartbeat message: <%= serviceFacade.getHeartbeat()%> (note message is auto refreshed every 20 seconds)</p>
-
+        
+        
+        <p>Accessing the auction service... <%= auctionServ.getAuctions().get(0).getType() %></p>
+        <p>Hello world!</p>
     </body>
 </html>

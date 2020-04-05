@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.solent.com504.project.model.auction.dto.Auction;
 import org.solent.com504.project.model.party.dto.Party;
 
 @XmlRootElement
@@ -23,7 +24,10 @@ public class ReplyMessage {
     @XmlElementWrapper(name = "partylist")
     @XmlElement(name = "party")
     private List<Party> partyList = null;
-
+    
+    @XmlElementWrapper(name = "auctionlist")
+    @XmlElement(name = "auction")
+    private List<Auction> auctionList = null; 
   
 
     public Integer getCode() {
@@ -58,6 +62,12 @@ public class ReplyMessage {
         this.partyList = partyList;
     }
 
-   
+    public List<Auction> getAuctionList() {
+        return auctionList;
+    }
+
+    public void setAuctionList(List<Auction> auctionList) {
+        this.auctionList = auctionList;
+    }   
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.solent.com504.project.model.auction.service.AuctionService;
 import org.solent.com504.project.model.service.ServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,7 +37,9 @@ public class ViewController {
     @Qualifier("serviceFacade")
     ServiceFacade serviceFacade = null;
     
-    
+    @Autowired(required = true)
+    @Qualifier("auctionService")
+    AuctionService auctionServ = null;
     
     
     
@@ -53,6 +56,7 @@ public class ViewController {
         }
 
         m.addAttribute("serviceFacade", serviceFacade);
+        m.addAttribute("auctionService", auctionServ);
 
         // add error / response messages to page
         String errorMessage = "";
