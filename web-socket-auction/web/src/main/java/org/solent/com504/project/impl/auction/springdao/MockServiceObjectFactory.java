@@ -35,7 +35,7 @@ public class MockServiceObjectFactory {
 
     final static Logger LOG = LogManager.getLogger(MockServiceObjectFactory.class);
 
-    private PartyDAO partyDAO = new PartyMockDAO();
+    private PartyDAO partyDAO = new PartySpringDAOImpl();
 
     private AuctionDAO auctionDAO = new AuctionSpringDAOImpl();
 

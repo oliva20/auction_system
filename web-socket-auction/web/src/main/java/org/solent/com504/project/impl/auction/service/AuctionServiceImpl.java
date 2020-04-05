@@ -262,6 +262,7 @@ public class AuctionServiceImpl implements AuctionService, MessageListener {
                                 } else {
                                     LOG.debug("*********** 3");
                                     lot.setLotStatus(AuctionOrLotStatus.FINISHED);
+                                    //@@@ Is this the moment to store the auction map in the db?
                                     Message message = new Message();
                                     message.setMessageType(MessageType.LOT_WITHDRAWN);
                                     message.setAuctionuuid(dbAuction.getAuctionuuid());

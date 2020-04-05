@@ -18,8 +18,8 @@ import org.solent.com504.project.model.party.dto.PartyRole;
  *
  * @author cgallen
  */
-public class PartyMockDAO implements PartyDAO{
-        final static Logger LOG = LogManager.getLogger(PartyMockDAO.class);
+public class PartySpringDAOImpl implements PartyDAO{
+        final static Logger LOG = LogManager.getLogger(PartySpringDAOImpl.class);
     
     private LinkedHashMap<String, Party> partyMap = new LinkedHashMap();
 

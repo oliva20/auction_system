@@ -22,13 +22,14 @@ import org.springframework.stereotype.Component;
  *
  * @author andre
  */
+//make sure the lots instaciate before the auction gets persisted.
 @Component
 public class AuctionSpringDAOImpl implements AuctionDAO {
 
     final static Logger LOG = LogManager.getLogger(AuctionDAO.class);
     
     @Autowired
-    AuctionRepository auctionRep = null;
+    AuctionRepository auctionRep = null; //this is null when runing service test
     
     // hashmap of key auctionuuid, Auction - would replace with dao
     private LinkedHashMap<String, Auction> auctionMap = new LinkedHashMap();

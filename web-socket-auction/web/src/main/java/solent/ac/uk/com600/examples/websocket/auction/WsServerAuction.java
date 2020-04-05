@@ -80,7 +80,6 @@ public class WsServerAuction implements MessageListener {
             case TEST:
                 LOG.debug("TEST message received");
                 return message;
-
             case NEW_PARTICIPANT:
                 LOG.debug("NEW_PARTICIPANT: message received");
                 break;
