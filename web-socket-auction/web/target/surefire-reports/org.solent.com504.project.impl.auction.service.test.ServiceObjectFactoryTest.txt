@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.solent.com504.project.impl.auction.service.test.ServiceObjectFactoryTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.03 sec - in org.solent.com504.project.impl.auction.service.test.ServiceObjectFactoryTest

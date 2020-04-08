@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<replyMessage>
+    <partylist>
+        <party>
+            <partyRole>UNDEFINED</partyRole>
+            <address>
+                <number></number>
+                <addressLine1>home for me</addressLine1>
+                <addressLine2></addressLine2>
+                <county></county>
+                <country></country>
+                <postcode></postcode>
+                <latitude>0.0</latitude>
+                <longitude>0.0</longitude>
+                <telephone></telephone>
+                <mobile></mobile>
+            </address>
+            <partyStatus>ACTIVE</partyStatus>
+            <uuid>074fcd64-1e89-44bb-b878-3f1d5f7bffec</uuid>
+            <enabled>true</enabled>
+            <users/>
+        </party>
+    </partylist>
+    <auctionlist>
+        <auction>
+            <startTime>2020-04-08T23:25:54.935+01:00</startTime>
+            <lots>
+                <lot>
+                    <bids/>
+                    <quantity>0</quantity>
+                    <reservePrice>0.0</reservePrice>
+                    <soldPrice>0.0</soldPrice>
+                    <lotuuid>248cbe38-77c6-44be-b183-552528cee48a</lotuuid>
+                    <lotStatus>SCHEDULED</lotStatus>
+                </lot>
+            </lots>
+            <description>auction description</description>
+            <registeredPartys/>
+            <auctionuuid>ef0f564f-1690-44f4-8bd5-1d7fa60f600d</auctionuuid>
+            <auctionType>NORMAL</auctionType>
+            <auctionStatus>PLANNING</auctionStatus>
+        </auction>
+    </auctionlist>
+    <lotlist>
+        <lot>
+            <bids/>
+            <quantity>0</quantity>
+            <reservePrice>0.0</reservePrice>
+            <soldPrice>0.0</soldPrice>
+            <lotuuid>248cbe38-77c6-44be-b183-552528cee48a</lotuuid>
+            <lotStatus>SCHEDULED</lotStatus>
+        </lot>
+    </lotlist>
+    <bidlist>
+        <bid>
+            <biduuid>e3188e68-e8ca-4adc-acf4-55fd6b2e7405</biduuid>
+        </bid>
+    </bidlist>
+</replyMessage>
