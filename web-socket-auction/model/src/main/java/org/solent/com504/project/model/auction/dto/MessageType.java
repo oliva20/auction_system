@@ -10,6 +10,7 @@ public enum MessageType {
     LOT_SOLD,
     NEW_PARTICIPANT,
     ERROR,
+    REGISTER,
     NOT_REGISTERED,
     LOT_OR_AUCTION_CLOSED,
     BID,

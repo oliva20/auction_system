@@ -73,7 +73,10 @@ public class WsServerAuction implements MessageListener {
     @OnMessage
     public Message onMessage(Session session, Message message) throws IOException, EncodeException {
         LOG.debug("onMessage message=" + message);
-        String bidderuuid = partys.get(session.getId());
+        
+    // Q --- why bidder uuid is sessionId? should not it be party uuid
+        
+    String bidderuuid = partys.get(session.getId());
         message.setBidderuuid(bidderuuid);
 
         switch (message.getMessageType()) {
@@ -87,6 +90,21 @@ public class WsServerAuction implements MessageListener {
             case PARTICIPANT_LEFT:
                 LOG.debug("PARTICIPANT_LEFT: message received");
                 break;
+            case BID:
+                auctionService.bidForLot(message.getBidderuuid(), message.getAuctionuuid(), message.getAuthKey(), message.getLotuuid(), message.getValue());
+                Message highestBidMessage = new Message();
+                highestBidMessage.setBidderuuid(message.getBidderuuid());
+                highestBidMessage.setAuctionuuid(message.getAuctionuuid());
+                highestBidMessage.setLotuuid(message.getLotuuid());
+                highestBidMessage.setValue(message.getValue());
+                highestBidMessage.setMessageType(MessageType.NEW_HIGHEST_BID);
+                break;
+            case REGISTER:
+                String authKey = auctionService.registerForAuction(message.getAuctionuuid(), message.getBidderuuid());
+                Message authMessage = new Message();
+                authMessage.setBidderuuid(message.getBidderuuid());
+                authMessage.setAuthKey(authKey);
+                authMessage.setAuctionuuid(message.getAuctionuuid());                
             default:
                 Message reply = auctionService.onMessageReceived(message);
                 return reply;// code block

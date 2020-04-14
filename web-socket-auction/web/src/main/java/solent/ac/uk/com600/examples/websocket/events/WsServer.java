@@ -40,6 +40,7 @@ public class WsServer {
  
     @OnError
     public void onError(Throwable e){
+        System.out.println("Error occured: "+ e.getMessage());
         e.printStackTrace();
     }
  

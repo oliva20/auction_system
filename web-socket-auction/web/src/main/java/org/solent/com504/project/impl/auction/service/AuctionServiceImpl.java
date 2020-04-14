@@ -460,6 +460,7 @@ public class AuctionServiceImpl implements AuctionService, MessageListener {
         activeLots.remove(lotuuid);
     }
     
+    // no idea whats this doing
     @Override
     public Message onMessageReceived(Message message) {
         
