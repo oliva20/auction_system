@@ -31,17 +31,23 @@ import org.solent.com504.project.model.auction.message.MessageService;
 import org.solent.com504.project.model.auction.dto.MessageType;
 import org.solent.com504.project.model.auction.service.BankingService;
 import org.solent.com504.project.model.party.dto.Party;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author cgallen
  */
+@Service
+@Transactional //may or may not this 
 public class AuctionServiceImpl implements AuctionService, MessageListener {
     
     final static Logger LOG = LogManager.getLogger(AuctionServiceImpl.class);
     
     private PartyDAO partyDAO;
     
+    @Autowired // @@@ add autowiring on all of them.
     private AuctionDAO auctionDAO;
     
     private LotDAO lotDAO;

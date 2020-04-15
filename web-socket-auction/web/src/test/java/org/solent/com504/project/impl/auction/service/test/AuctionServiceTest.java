@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.runner.RunWith;
 
 import org.solent.com504.project.impl.auction.springdao.MockServiceObjectFactory;
 import org.solent.com504.project.model.auction.dao.AuctionDAO;
@@ -32,11 +33,15 @@ import org.solent.com504.project.model.auction.service.AuctionService;
 import org.solent.com504.project.model.flower.dto.Flower;
 import org.solent.com504.project.model.party.dao.PartyDAO;
 import org.solent.com504.project.model.party.dto.Party;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
  * @author cgallen
  */
+@RunWith(SpringJUnit4ClassRunner.class) //this makes the autowiring work in the repositories.
+@ContextConfiguration(locations = {"/spring.xml"})
 public class AuctionServiceTest implements MessageListener {
 
     final static Logger LOG = LogManager.getLogger(AuctionServiceTest.class);
@@ -130,6 +135,7 @@ public class AuctionServiceTest implements MessageListener {
                     auction.getLots().add(lot);
                 }
                 auctionDAO.save(auction);
+                auctionDAO.saveAuctionMap();
             } catch (Exception ex) {
                 LOG.error("problem initialising :", ex);
             }
