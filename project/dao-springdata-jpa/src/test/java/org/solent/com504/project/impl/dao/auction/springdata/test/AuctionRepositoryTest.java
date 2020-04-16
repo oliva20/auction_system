@@ -5,6 +5,8 @@
  */
 package org.solent.com504.project.impl.dao.auction.springdata.test;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static org.junit.Assert.assertNotNull;
@@ -56,5 +58,10 @@ public class AuctionRepositoryTest {
         Auction auction2 = auctionRepository.getOne(id);
         System.out.println("auction2=" + auction2);
         LOG.debug("end of test1");
+        
+        List<Auction> aucList = new ArrayList();
+        aucList = auctionRepository.findAll();
+        System.out.println(aucList);
+        
     }
 }

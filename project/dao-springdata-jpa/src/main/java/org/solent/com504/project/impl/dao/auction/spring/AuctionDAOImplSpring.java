@@ -5,13 +5,13 @@
  */
 package org.solent.com504.project.impl.dao.auction.spring;
 
+import java.util.Date;
 import java.util.List;
 import org.solent.com504.project.model.auction.dto.Auction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.solent.com504.project.model.auction.dao.AuctionDAO;
 import org.solent.com504.project.impl.dao.auction.springdata.AuctionRepository;
-import org.solent.com504.project.model.lot.dto.Lot;
 
 
 /**
@@ -25,31 +25,44 @@ public class AuctionDAOImplSpring implements AuctionDAO {
     private AuctionRepository auctionRepository = null;
 
     @Override
-    public Long findAuctionById(Long id){
-        return id;
+    public Auction findById(Long id) {
+        return auctionRepository.getOne(id);
     }
-            
+
     @Override
-    public List<Auction> findAll(){
+    public Auction save(Auction auction) {
+        return auctionRepository.save(auction);
+    }
+
+    @Override
+    public List<Auction> findAll() {
         return auctionRepository.findAll();
     }
 
     @Override
-    public boolean deleteAutcion(Auction auction){
-        auctionRepository.deleteAll();
-        return true;
+    public void deleteById(long id) {
+        auctionRepository.deleteById(id);
     }
-//
-//    @Override
-//    public List<Lot> getAuctionLotsById(Long auctionId){
-//        List<Lot> lots = auctionRepository.getAuctionLotsById(auctionId);
-//        return lots;
-//    }
 
     @Override
-    public Auction updateAuction(Auction auction){
-        auctionRepository.save(auction);
-        return auction;
+    public void delete(Auction auction) {
+        auctionRepository.delete(auction);
     }
+
+    @Override
+    public void deleteAll() {
+        auctionRepository.deleteAll();
+    }
+
+    @Override
+    public Auction findByAuctionuuid(String auctionuuid) {
+        return auctionRepository.findByAuctionuuid(auctionuuid);
+    }
+
+    @Override
+    public List<Auction> findActiveOrScheduledBefore(Date time) {
+        return auctionRepository.findActiveOrScheduledBefore(time);
+    }
+
     
 }

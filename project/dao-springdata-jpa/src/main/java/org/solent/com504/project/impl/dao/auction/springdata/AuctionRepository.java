@@ -24,5 +24,9 @@ public interface AuctionRepository extends JpaRepository<Auction, Long> {
       @Query("select a from Auction a where a.startTime = :startTime")
       public List<Auction> findByStartTime(@Param("startTime") Date StartTime);
       
-      // TODO: Implement the other methods
+      @Query("select a from Auction a where a.auctionuuid = :uuid")
+      public Auction findByAuctionuuid(@Param("uuid") String uuid);
+      
+      @Query("select a from Auction a where a.startTime = :startTime")
+      public List<Auction> findActiveOrScheduledBefore(@Param("startTime") Date time);
 }

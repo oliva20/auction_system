@@ -1,18 +1,25 @@
 package org.solent.com504.project.model.auction.dao;
 
+import java.util.Date;
 import java.util.List;
 import org.solent.com504.project.model.auction.dto.Auction;
-import org.solent.com504.project.model.lot.dto.Lot;
 
 public interface AuctionDAO {
 
-    public Long findAuctionById(Long id);
+    public Auction findById(Long id);
+
+    public Auction save(Auction auction);
 
     public List<Auction> findAll();
 
-    public boolean deleteAutcion(Auction auction);
+    public void deleteById(long id);
 
-//    public List<Lot> getAuctionLotsById(Long auctionId);
+    public void delete(Auction auction);
 
-    public Auction updateAuction(Auction auction);
+    public void deleteAll();
+
+    public Auction findByAuctionuuid(String auctionuuid);
+    
+    public List<Auction> findActiveOrScheduledBefore(Date time);
+
 }

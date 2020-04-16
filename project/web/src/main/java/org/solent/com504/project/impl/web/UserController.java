@@ -16,8 +16,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.solent.com504.project.impl.validator.UserValidator;
 import org.solent.com504.project.model.auction.dto.Auction;
+import org.solent.com504.project.model.auction.dto.Lot;
 import org.solent.com504.project.model.auction.service.AuctionService;
-import org.solent.com504.project.model.lot.dto.Lot;
 import org.solent.com504.project.model.party.dto.Address;
 import org.solent.com504.project.model.party.dto.Party;
 import org.solent.com504.project.model.party.dto.PartyRole;
@@ -356,18 +356,18 @@ public class UserController {
                 LOG.debug("COWABUNGA WERE CREATING THE LOT");
                 Lot lotBlank = new Lot();
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-                Set<Lot> lots = new HashSet<>();
+                List<Lot> lots = new ArrayList<>();
                 
                 try{
-                    lotBlank.setDuration(Math.toIntExact(sdf.parse(lotDuration).getTime()));
+                    lotBlank.setLotDuraton(sdf.parse(lotDuration).getTime());
                 }catch(Exception e){
                     LOG.debug(e);
                 }
-                lotBlank.setGrade(lotGrade);
-                lotBlank.setHighestBidPrice(Double.valueOf(lotHighestPrice));
-                lotBlank.setReservedPrice(Double.valueOf(lotReservedPrice));
-                lotBlank.setLife_days(Integer.valueOf(lotLifespan));
-                lotBlank.setQuantity(Integer.valueOf(lotQuantity));
+                ///lotBlank.setFlowerType(lotGrade);
+                //lotBlank.setHighestBidPrice(Double.valueOf(lotHighestPrice));
+                lotBlank.setReservePrice(Double.valueOf(lotReservedPrice));
+                //lotBlank.setLife_days(Integer.valueOf(lotLifespan));
+                lotBlank.setQuantity(Long.valueOf(lotQuantity));
                 
                 if(blankAuction.getLots() != null){ // lots set will be null if first creation of auction
                     lots.addAll(blankAuction.getLots());
@@ -377,7 +377,7 @@ public class UserController {
                 model.addAttribute("blankAuction", blankAuction);
                 
                 try{
-                    LOG.debug("COWABUNGA " + lotBlank.getGrade());
+                    LOG.debug("COWABUNGA " + lotBlank.getLotuuid());
                 }catch(Exception e){
 
                 }

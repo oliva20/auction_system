@@ -1,4 +1,6 @@
 C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\service\HelloWorld.java
+C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\service\BankingServiceImpl.java
+C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\service\SimpleMessageServiceImpl.java
 C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\service\AuctionServiceImpl.java
 C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\user\service\DBInitialise.java
 C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\party\service\PartyServiceImpl.java
@@ -6,3 +8,4 @@ C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java
 C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\service\ServiceFacadeImpl.java
 C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\user\service\UserServiceImpl.java
 C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\user\service\UserDetailsServiceImpl.java
+C:\Users\joshm\Desktop\Github-Repos\auction_system\project\service\src\main\java\org\solent\com504\project\impl\service\CheckAuth.java

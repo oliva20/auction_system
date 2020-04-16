@@ -1,34 +1,79 @@
 package org.solent.com504.project.model.auction.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
+import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.solent.com504.project.model.lot.dto.Lot;
+import javax.xml.bind.annotation.XmlTransient;
+import org.solent.com504.project.model.party.dto.Party;
+
+@Schema(description = "Auction object describes an auction")
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity
 public class Auction {
-    
-    public Long id;
-    
-    private Date startTime;
-    
-    private Set<Lot> lots;
-    
-    private AuctionType auctionType;
 
+    private Long id;
+
+    private Date startTime;
+
+    @XmlTransient
+    private Long lotDuration = 1000*60*1L; // default 1 minute
+
+    @XmlElementWrapper(name = "lots")
+    @XmlElement(name = "lot")
+    private List<Lot> lots = new ArrayList();
+
+    private String description;
+
+    @XmlElementWrapper(name = "registeredPartys")
+    @XmlElement(name = "party")
+    private List<Party> registeredPartys = new ArrayList();
+
+    // unique UUID created for every Auction
+    private String auctionuuid = UUID.randomUUID().toString(); 
+
+    AuctionType auctionType = AuctionType.NORMAL;
+
+    private AuctionOrLotStatus auctionStatus = AuctionOrLotStatus.PLANNING;
+
+    // used  to index lots as auction proceeds
+    // Commented out because of the sheer power of this variable.
+    // This little guy stops the database from working because it's either null and/or the user doesn't have permission to read it from the web service
+//    @XmlTransient
+//    private int currentLotIndex = 0;
+
+    public Auction() {
+    }
+
+    public Auction(Date startTime, String description) {
+        this.startTime = startTime;
+        this.description = description;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -39,8 +84,48 @@ public class Auction {
         this.id = id;
     }
     
-    
-    
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public List<Lot> getLots() {
+        return lots;
+    }
+
+    public void setLots(List<Lot> lots) {
+        this.lots = lots;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @OneToMany
+    public List<Party> getRegisteredPartys() {
+        return registeredPartys;
+    }
+
+    public void setRegisteredPartys(List<Party> registeredPartys) {
+        this.registeredPartys = registeredPartys;
+    }
+
+    public String getAuctionuuid() {
+        return auctionuuid;
+    }
+
+    public void setAuctionuuid(String auctionuuid) {
+        this.auctionuuid = auctionuuid;
+    }
+
+    public AuctionOrLotStatus getAuctionStatus() {
+        return auctionStatus;
+    }
+
+    public void setAuctionStatus(AuctionOrLotStatus auctionStatus) {
+        this.auctionStatus = auctionStatus;
+    }
+
     public AuctionType getAuctionType() {
         return auctionType;
     }
@@ -48,37 +133,37 @@ public class Auction {
     public void setAuctionType(AuctionType auctionType) {
         this.auctionType = auctionType;
     }
-    
 
+//    public int getCurrentLotIndex() {
+//        return currentLotIndex;
+//    }
+//
+//    public void setCurrentLotIndex(int currentLotIndex) {
+//        this.currentLotIndex = currentLotIndex;
+//    }
 
-    public Date getStartTime() {
-        return startTime;
+    public Long getLotDuration() {
+        return lotDuration;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public AuctionType getType() {
-        return auctionType;
-    }
-
-    public void setType(AuctionType type) {
-        this.auctionType = type;
-    }
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    public Set<Lot> getLots() {
-        return lots;
-    }
-
-    public void setLots(Set<Lot> lots) {
-        this.lots = lots;
+    public void setLotDuration(Long lotDuration) {
+        this.lotDuration = lotDuration;
     }
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "Auction{" + "id=" + id 
+                + ", startTime=" + startTime 
+                + ", lotDuration=" + lotDuration 
+                + ", lots.size=" +  ( (lots==null) ? null : lots.size())
+                + ", description=" + description 
+                + ", registeredPartys=" + registeredPartys 
+                + ", auctionuuid=" + auctionuuid 
+                + ", auctionType=" + auctionType 
+                + ", auctionStatus=" + auctionStatus + '}';
+                //+ ", currentLotIndex=" + currentLotIndex + '}';
     }
+
+
 
 }

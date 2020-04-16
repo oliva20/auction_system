@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -41,13 +42,24 @@ public class Party {
     private PartyStatus partyStatus = PartyStatus.ACTIVE;
 
     // unique UUID created for every Party
-    private String uuid = Long.toHexString(new Date().getTime());
+    private String uuid = UUID.randomUUID().toString();
 
     private Boolean enabled = true;
 
     @XmlElementWrapper(name = "users")
     @XmlElement(name = "user")
     private Set<User> users = new HashSet();
+
+    private AccountDetails accountDetails;
+
+    public Party() {
+        super();
+    }
+
+    public Party(String firstName, String secondName) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -129,19 +141,28 @@ public class Party {
     }
 
     // note ad remove depend upon identity
-    public void addUser(User user){
+    public void addUser(User user) {
         this.users.add(user);
         user.getParties().add(this);
     }
-    
-    public void removeUser(User user){
+
+    public void removeUser(User user) {
         this.users.remove(user);
         user.getParties().remove(this);
     }
 
+    @Embedded
+    public AccountDetails getAccountDetails() {
+        return accountDetails;
+    }
+
+    public void setAccountDetails(AccountDetails accountDetails) {
+        this.accountDetails = accountDetails;
+    }
+
     @Override
     public String toString() {
-        return "Party{" + "id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", partyRole=" + partyRole + ", address=" + address + ", partyStatus=" + partyStatus + ", uuid=" + uuid + ", enabled=" + enabled + '}';
+        return "Party{" + "id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", partyRole=" + partyRole + ", address=" + address + ", partyStatus=" + partyStatus + ", uuid=" + uuid + ", enabled=" + enabled + ", users=" + users + ", accountDetails=" + accountDetails + '}';
     }
 
     @Override
@@ -169,7 +190,5 @@ public class Party {
         }
         return true;
     }
-    
-    
 
 }

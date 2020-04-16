@@ -5,8 +5,10 @@
  */
 package org.solent.com504.project.impl.user.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +18,7 @@ import org.solent.com504.project.impl.dao.user.springdata.RoleRepository;
 import org.solent.com504.project.impl.dao.user.springdata.UserRepository;
 import org.solent.com504.project.model.auction.dto.Auction;
 import org.solent.com504.project.model.auction.dto.AuctionType;
-import org.solent.com504.project.model.lot.dto.Lot;
+import org.solent.com504.project.model.auction.dto.Lot;
 import org.solent.com504.project.model.party.dto.Party;
 import org.solent.com504.project.model.user.dto.Role;
 import org.solent.com504.project.model.user.dto.User;
@@ -116,25 +118,23 @@ public class DBInitialise {
             LOG.debug("New auction being created");
             
             Auction auction = new Auction(); // Instanciate new Auction
-            Set<Lot> lots = new HashSet<>(); // Instanciate new Lots
+            List<Lot> lots = new ArrayList(); // Instanciate new Lots
             
             lots.add(new Lot()); // Insert blank set into lots
             
             LOG.debug("Populating Lot");
             // Populate lot
             for(Lot lot : lots){
-                lot.setDuration(10);
-                lot.setGrade("Good enough");
-                lot.setLife_days(7);
-                lot.setPickdate(new Date());
-                lot.setQuantity(200);
-                lot.setReservedPrice(2.00);
-                lot.setHighestBidPrice(50.00);
+                lot.setAuctionType(AuctionType.NORMAL);
+                lot.setQuantity(150L);
+                lot.setCurrentLotStart(new Date());
+                lot.setReservePrice(Double.MAX_VALUE);
+                
                 LOG.debug(lot.toString());
             }
             
             
-            auction.setAuctionType(AuctionType.STANDARD);
+            auction.setAuctionType(AuctionType.NORMAL);
             auction.setLots(lots);
             auction.setStartTime(new Date());
             

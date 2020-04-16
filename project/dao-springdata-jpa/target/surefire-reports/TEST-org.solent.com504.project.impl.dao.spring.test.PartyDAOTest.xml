@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="9" failures="0" name="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" time="0.351" errors="0" skipped="0">
+<testsuite tests="9" failures="0" name="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" time="0.427" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>
@@ -29,7 +29,7 @@
     <property name="os.name" value="Windows 10"/>
     <property name="classworlds.conf" value="C:\Program Files\Apache\maven\bin\..\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Java\jdk1.8.0_181\bin;C:\Program Files\Apache\maven\bin;E:\Program Files\nodejs\;C:\MinGW\bin;F:\Program Files\Git\cmd;F:\Users\joshm\AppData\Local\Programs\Python\Python37-32\Scripts\;F:\Users\joshm\AppData\Local\Programs\Python\Python37-32\;C:\Users\joshm\AppData\Local\Microsoft\WindowsApps;C:\Users\joshm\AppData\Local\atom\bin;C:\Users\joshm\AppData\Local\GitHubDesktop\bin;C:\Users\joshm\AppData\Local\Microsoft\WindowsApps;C:\Users\joshm\AppData\Roaming\npm;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Java\jdk1.8.0_181\bin;C:\Program Files\Apache\maven\bin;E:\Program Files\nodejs\;C:\MinGW\bin;C:\Program Files\PuTTY\;F:\Program Files\Git\cmd;F:\Users\joshm\AppData\Local\Programs\Python\Python37-32\Scripts\;F:\Users\joshm\AppData\Local\Programs\Python\Python37-32\;C:\Users\joshm\AppData\Local\Microsoft\WindowsApps;C:\Users\joshm\AppData\Local\atom\bin;C:\Users\joshm\AppData\Local\GitHubDesktop\bin;C:\Users\joshm\AppData\Local\Microsoft\WindowsApps;C:\Users\joshm\AppData\Roaming\npm;;."/>
     <property name="maven.conf" value="C:\Program Files\Apache\maven\bin\../conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
@@ -65,13 +65,13 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="saveTest" time="0.008"/>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="deleteAllTest" time="0.009"/>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="findByPartyRoleTest" time="0.151"/>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="findByNameTest" time="0.077"/>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="deleteByIdTest" time="0.008"/>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="createPartyDAOTest" time="0.012"/>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="findAllTest" time="0.075"/>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="findByIdTest" time="0.004"/>
-  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="deleteTest" time="0.007"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="saveTest" time="0.001"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="deleteAllTest" time="0.003"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="findByPartyRoleTest" time="0.112"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="findByNameTest" time="0.258"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="deleteByIdTest" time="0.004"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="createPartyDAOTest" time="0.002"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="findAllTest" time="0.035"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="findByIdTest" time="0.011"/>
+  <testcase classname="org.solent.com504.project.impl.dao.spring.test.PartyDAOTest" name="deleteTest" time="0.001"/>
 </testsuite>

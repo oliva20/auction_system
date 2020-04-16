@@ -1,19 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.solent.com504.project.model.auction.service;
 
+import java.util.Date;
 import java.util.List;
 import org.solent.com504.project.model.auction.dto.Auction;
 
-/**
- *
- * @author Josh
- */
-public interface AuctionService {
+import org.solent.com504.project.model.auction.dto.Lot;
+import org.solent.com504.project.model.auction.message.MessageListener;
+import org.solent.com504.project.model.flower.dto.Flower;
+
+
+public interface AuctionService extends  MessageListener, Runnable{
     
-    public List<Auction> getAuctions();
+    // returns authkey
+    public String registerForAuction(String auctionuuid, String partyUuid);
     
+    public List<Auction> getAuctionList();
+    
+    public Auction getAuctionDetails(String auctionuuid);
+    
+    public Lot getLotDetails(String lotuuid);
+    
+    public List<Lot> getAuctionLots(String auctionuuid);
+    
+    public Lot addLotToAuction(String auctionuuid, String selleruuid, Flower flowertype, double reserveprice, long quantity) throws IllegalArgumentException;
+    
+    public void bidForLot(String bidderuuid, String auctionuuid, String authKey, String lotuuid, double amount) throws IllegalArgumentException;
+    
+    public void runAuctionSchedule();
+    
+    public void runAuctionSchedule(Date currentTime);
+
+
 }
