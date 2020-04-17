@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.project.impl.auction.service;
+package org.solent.com504.project.impl.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.solent.com504.project.model.auction.service.BankingService;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author cgallen
  */
+@Component
 public class BankingServiceImpl implements BankingService {
 
     final static Logger LOG = LogManager.getLogger(BankingServiceImpl.class);

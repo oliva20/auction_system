@@ -34,10 +34,10 @@
                 </tr>
             </thead>
             <tbody>
-                <%for(Auction auction : auctionServ.getAuctions()){%>
+                <%for(Auction auction : auctionServ.getAuctionList()){%>
                     <tr>
                         <td><%=auction.getId()%></td>
-                        <td><%=auction.getType().toString() %></td>
+                        <td><%=auction.getAuctionType().toString() %></td>
                         <td><%=auction.getStartTime() %></td>
                         <td><%=auction.getLots().size() %></td>
                         <td>

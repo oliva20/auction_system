@@ -26,10 +26,10 @@
 <!-- Begin page content -->
 <main role="main" class="container">
     <H1>Home</H1>
-    <% for(Auction auction : auctionServ.getAuctions()){ %>
+    <% for(Auction auction : auctionServ.getAuctionList()){ %>
     <div class="auctionContainer">
         <p>Auction Start: <%=df.format(auction.getStartTime()) %></p>
-        <p>Auction Type: <%=auction.getType().toString()%></p>
+        <p>Auction Type: <%=auction.getAuctionType().toString()%></p>
         <p>Auction Lot amount: <%=auction.getLots().size()%></p>
         <button class="btn btn-primary">View Lots</button>
     </div>

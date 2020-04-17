@@ -28,20 +28,20 @@
                     <td><input type="time" value="00:00" form="lotForm" name="lotDuration" required/></td>
                 </tr>
                 <tr>
-                    <td><label>Reserved Price: </label></td>
-                    <td>£<input type="number" min="0.00" step="0.01" placeholder="0.00" form="lotForm" name="lotReservedPrice" required></td>
+                    <td><label>Reserve Price: </label></td>
+                    <td>£<input type="number" min="0.00" step="0.01" placeholder="0.00" form="lotForm" name="lotReservePrice" required></td>
                 </tr>
                 <tr>
-                    <td><label>Highest Price: </label></td>
-                    <td>£<input type="number" min="0.00" step="0.01" placeholder="0.00" form="lotForm" name="lotHighestPrice" required></td>
+                    <td><label>Sold Price: </label></td>
+                    <td>£<input type="number" min="0.00" step="0.01" placeholder="0.00" form="lotForm" name="lotSoldPrice" required></td>
                 </tr>
                 <tr>
-                    <td><label>Flower grade: </label></td>
-                    <td><input type="text" placeholder="F" form="lotForm" name="lotGrade" required></td>
+                    <td><label>Flower: </label></td> <!-- Since the other team are dealing with sellers and their flowers, we will only refer to them by common name -->
+                    <td><input type="text" placeholder="Rose" form="lotForm" name="lotFlower" required></td>
                 </tr>
                 <tr>
-                    <td><label>Flower lifespan (days): </label></td>
-                    <td><input type="number" min="0" step="1" placeholder="0" form="lotForm" name="lotLifespan" required></td>
+                    <td><label>Flower Seller: </label></td>
+                    <td><input type="text" placeholder="uuid" form="lotForm" name="lotSelleruuid" required></td>
                 </tr>
                 <tr>
                     <td><label>Flower quantity: </label></td>

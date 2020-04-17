@@ -10,11 +10,13 @@ import org.solent.com504.project.impl.dao.auction.springdata.LotRepository;
 import org.solent.com504.project.model.auction.dao.LotDAO;
 import org.solent.com504.project.model.auction.dto.Lot;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Josh
  */
+@Component
 public class LotDAOImplSpring implements LotDAO{
 
     @Autowired

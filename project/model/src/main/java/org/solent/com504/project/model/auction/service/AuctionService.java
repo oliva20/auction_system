@@ -18,6 +18,8 @@ public interface AuctionService extends  MessageListener, Runnable{
     
     public Auction getAuctionDetails(String auctionuuid);
     
+    public void save(Auction auction);
+    
     public Lot getLotDetails(String lotuuid);
     
     public List<Lot> getAuctionLots(String auctionuuid);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.project.impl.auction.service;
+package org.solent.com504.project.impl.service;
 
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -12,11 +12,13 @@ import org.apache.logging.log4j.Logger;
 import org.solent.com504.project.model.auction.dto.Message;
 import org.solent.com504.project.model.auction.message.MessageListener;
 import org.solent.com504.project.model.auction.message.MessageService;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author cgallen
  */
+@Component
 public class SimpleMessageServiceImpl implements MessageService {
 
     final static Logger LOG = LogManager.getLogger(SimpleMessageServiceImpl.class);

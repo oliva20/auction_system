@@ -37,8 +37,7 @@ public class ViewController {
     @Qualifier("serviceFacade")
     ServiceFacade serviceFacade = null;
     
-    @Autowired(required = true)
-    @Qualifier("auctionService")
+    @Autowired
     AuctionService auctionServ = null;
     
     

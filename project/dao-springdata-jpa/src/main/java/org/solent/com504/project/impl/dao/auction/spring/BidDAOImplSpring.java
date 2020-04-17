@@ -10,11 +10,13 @@ import org.solent.com504.project.impl.dao.auction.springdata.BidRepository;
 import org.solent.com504.project.model.auction.dao.BidDAO;
 import org.solent.com504.project.model.auction.dto.Bid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Josh
  */
+@Component
 public class BidDAOImplSpring implements BidDAO{
 
     @Autowired

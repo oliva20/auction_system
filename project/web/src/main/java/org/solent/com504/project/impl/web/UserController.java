@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,8 +17,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.solent.com504.project.impl.validator.UserValidator;
 import org.solent.com504.project.model.auction.dto.Auction;
+import org.solent.com504.project.model.auction.dto.AuctionType;
 import org.solent.com504.project.model.auction.dto.Lot;
 import org.solent.com504.project.model.auction.service.AuctionService;
+import org.solent.com504.project.model.flower.dto.Flower;
 import org.solent.com504.project.model.party.dto.Address;
 import org.solent.com504.project.model.party.dto.Party;
 import org.solent.com504.project.model.party.dto.PartyRole;
@@ -66,8 +69,7 @@ public class UserController {
     private UserValidator userValidator;
     
     // Allows access to the auction service
-    @Autowired(required = true)
-    @Qualifier("auctionService")
+    @Autowired
     private AuctionService auctionService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -338,10 +340,10 @@ public class UserController {
             @RequestParam("createAuction") String createAuction,
             @RequestParam(value = "createLot", required = false) String createLot,  // Parameters here and below are for lot creation
             @RequestParam(value = "lotDuration", required = false) String lotDuration,  
-            @RequestParam(value = "lotReservedPrice", required = false) String lotReservedPrice,
-            @RequestParam(value = "lotHighestPrice", required = false) String lotHighestPrice,
-            @RequestParam(value = "lotGrade", required = false) String lotGrade,
-            @RequestParam(value = "lotLifespan", required = false) String lotLifespan,
+            @RequestParam(value = "lotReservePrice", required = false) String lotReservePrice,
+            @RequestParam(value = "lotSoldPrice", required = false) String lotSoldPrice,
+            @RequestParam(value = "lotFlower", required = false) String lotFlower,
+            @RequestParam(value = "lotSelleruuid", required = false) String lotSelleruuid,
             @RequestParam(value = "lotQuantity", required = false) String lotQuantity,
             Authentication authentication){
         
@@ -357,16 +359,20 @@ public class UserController {
                 Lot lotBlank = new Lot();
                 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 List<Lot> lots = new ArrayList<>();
+                Flower flower = new Flower();
                 
                 try{
                     lotBlank.setLotDuraton(sdf.parse(lotDuration).getTime());
                 }catch(Exception e){
                     LOG.debug(e);
                 }
-                ///lotBlank.setFlowerType(lotGrade);
-                //lotBlank.setHighestBidPrice(Double.valueOf(lotHighestPrice));
-                lotBlank.setReservePrice(Double.valueOf(lotReservedPrice));
-                //lotBlank.setLife_days(Integer.valueOf(lotLifespan));
+                
+                flower.setCommonName(lotFlower);
+                
+                lotBlank.setReservePrice(Double.valueOf(lotReservePrice));
+                lotBlank.setSoldPrice(Double.valueOf(lotSoldPrice));
+                lotBlank.setFlowerType(flower);
+                lotBlank.setSeller(partyService.findByUuid(lotSelleruuid));
                 lotBlank.setQuantity(Long.valueOf(lotQuantity));
                 
                 if(blankAuction.getLots() != null){ // lots set will be null if first creation of auction
@@ -387,6 +393,27 @@ public class UserController {
         
         
         return "viewModifyAuction";
+    }
+    
+    @RequestMapping(value={"/saveAuction"}, method = RequestMethod.POST)
+    public String saveAuction(Model model,
+            @RequestParam("startTime") String startTime,
+            @RequestParam("auctionType") String auctionType,
+            Authentication authentication){
+        
+            LOG.debug("New auction being added to database... start time is: " + startTime);
+            blankAuction.setStartTime(new Date()); // need to add start time from input element
+            blankAuction.setAuctionType(AuctionType.valueOf(auctionType));
+            
+            // Save auction to database then empty the blank auction in memeory
+            auctionService.save(blankAuction);
+            blankAuction = new Auction();
+            
+            
+            if(!model.containsAttribute("auctionService")){
+                model.addAttribute("auctionService", auctionService);
+            }
+            return "redirect:/home";
     }
     
     // AUCTION LOT MANAGEMENT

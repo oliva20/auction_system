@@ -31,25 +31,34 @@ import org.solent.com504.project.model.auction.message.MessageService;
 import org.solent.com504.project.model.auction.dto.MessageType;
 import org.solent.com504.project.model.auction.service.BankingService;
 import org.solent.com504.project.model.party.dto.Party;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author cgallen
  */
+@Component
 public class AuctionServiceImpl implements AuctionService, MessageListener {
     
     final static Logger LOG = LogManager.getLogger(AuctionServiceImpl.class);
     
+    @Autowired
     private PartyDAO partyDAO;
     
+    @Autowired
     private AuctionDAO auctionDAO;
     
+    @Autowired
     private LotDAO lotDAO;
     
+    @Autowired
     private BidDAO bidDAO;
     
+    @Autowired
     private MessageService messagesOut;
     
+    @Autowired
     private BankingService bankingService;
     
     private int noSymultaneousAuctions = 2;
@@ -503,6 +512,11 @@ public class AuctionServiceImpl implements AuctionService, MessageListener {
         }catch (Exception ex){
             LOG.error("problem running auction service runAuctionSchedule() ",ex);
         }
+    }
+
+    @Override
+    public void save(Auction auction) {
+        auctionDAO.save(auction);
     }
     
  

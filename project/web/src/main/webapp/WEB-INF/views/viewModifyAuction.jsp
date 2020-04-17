@@ -1,4 +1,4 @@
-<%@page import="org.solent.com504.project.model.lot.dto.Lot"%>
+<%@page import="org.solent.com504.project.model.auction.dto.Lot"%>
 <%@page import="org.solent.com504.project.model.auction.dto.AuctionType"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.solent.com504.project.model.auction.service.AuctionService"%>
@@ -31,15 +31,16 @@
     <%if(createAuction){%>
     <h1>Auction Creation</h1>
     
+    <form id="auctionData" method="POST" action="./saveAuction"></form>
     <table class="table">
         <tr>
             <th><label>Auction Start Date</label></th>
-            <td><input type="date" name="startTime"></td>
+            <td><input type="date" name="startTime" form="auctionData"></td>
         </tr>
         <tr>
           <td><label>Auction Type: </label></td>
           <td>
-            <select name="auctionType">
+              <select name="auctionType" form="auctionData">
                 <% for(AuctionType type : AuctionType.values()){%>
                     <option value="<%= type.toString() %>"><%= type.toString() %></option>
                 <%}%>
@@ -60,21 +61,21 @@
             <td colspan="2" style="border: none;">
                 <tabel class="tabel">
                     <tr>
-                        <td>Duration</td>
+                        <td>Duration (Milliseconds)</td>
                         <td>Reserved Price</td>
                         <td>Highest Price</td>
-                        <td>Grade</td>
+                        <td>Seller</td>
                         <td>Quantity</td>
                     </tr>
                     <% 
                         if(blankAuction.getLots() != null){
-                            for(Lot lot: blankAuction.getLots()){ 
+                            for(Lot lot: blankAuction.getLots()){
                     %>
                     <tr>
-                        <td><%= lot.getDuration() %></td>
-                        <td><%= lot.getReservedPrice() %></td>
-                        <td><%= lot.getHighestBidPrice() %></td>
-                        <td><%= lot.getGrade() %></td>
+                        <td><%= lot.getLotDuraton() %></td>
+                        <td><%= lot.getReservePrice() %></td>
+                        <td><%= lot.getSoldPrice() %></td>
+                        <td><%= lot.getSeller().getFirstName() %></td>
                         <td><%= lot.getQuantity() %></td>
                     </tr>
                     <%  }
@@ -83,7 +84,14 @@
             </td>
         </tr>
         <tr>
-            <td><input class="btn btn-success" type="submit" value="Submit"/></td>
+            <%if(blankAuction.getLots() != null){ %>
+            <td>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" form="auctionData"/>
+                <input class="btn btn-success" type="submit" value="Submit" form="auctionData"/>
+            </td>
+            <%}else{%>
+            <td><input class="btn btn-success" type="submit" value="Submit" disabled/></td>
+            <%}%>
         </tr>
     </table>
     <%}else{%>
