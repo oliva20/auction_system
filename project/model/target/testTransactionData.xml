@@ -16,27 +16,27 @@
                 <mobile></mobile>
             </address>
             <partyStatus>ACTIVE</partyStatus>
-            <uuid>0fbdcbf5-f82b-453b-88ad-2edcdc635df5</uuid>
+            <uuid>45d07826-9e02-441d-9ea6-222137a0b1d4</uuid>
             <enabled>true</enabled>
             <users/>
         </party>
     </partylist>
     <auctionlist>
         <auction>
-            <startTime>2020-04-17T00:34:59.644+01:00</startTime>
+            <startTime>2020-04-18T04:16:52.390+01:00</startTime>
             <lots>
                 <lot>
                     <bids/>
                     <quantity>0</quantity>
                     <reservePrice>0.0</reservePrice>
                     <soldPrice>0.0</soldPrice>
-                    <lotuuid>e4158792-410a-46ef-a559-ef708574ed21</lotuuid>
+                    <lotuuid>7f70537f-1cc1-4381-acd2-0fdb1c07cd45</lotuuid>
                     <lotStatus>SCHEDULED</lotStatus>
                 </lot>
             </lots>
             <description>auction description</description>
             <registeredPartys/>
-            <auctionuuid>ddacccbe-18ad-4404-bf45-3c2457731e3a</auctionuuid>
+            <auctionuuid>651a4285-7c09-4557-bfee-828e29d3123c</auctionuuid>
             <auctionType>NORMAL</auctionType>
             <auctionStatus>PLANNING</auctionStatus>
         </auction>
@@ -47,14 +47,14 @@
             <quantity>0</quantity>
             <reservePrice>0.0</reservePrice>
             <soldPrice>0.0</soldPrice>
-            <lotuuid>e4158792-410a-46ef-a559-ef708574ed21</lotuuid>
+            <lotuuid>7f70537f-1cc1-4381-acd2-0fdb1c07cd45</lotuuid>
             <lotStatus>SCHEDULED</lotStatus>
         </lot>
     </lotlist>
     <bidlist>
         <bid>
-            <time>2020-04-17T00:34:59.644+01:00</time>
-            <biduuid>5c8f51a3-1766-477d-94e5-804183e86c30</biduuid>
+            <time>2020-04-18T04:16:52.389+01:00</time>
+            <biduuid>ab960568-cb30-47c8-883a-36f689948cb2</biduuid>
         </bid>
     </bidlist>
 </replyMessage>

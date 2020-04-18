@@ -3,7 +3,9 @@ package org.solent.com504.project.model.auction.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,13 +13,17 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.transaction.Transactional;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.solent.com504.project.model.party.dto.Party;
 
 @Schema(description = "Auction object describes an auction")
@@ -43,7 +49,7 @@ public class Auction {
 
     @XmlElementWrapper(name = "registeredPartys")
     @XmlElement(name = "party")
-    private List<Party> registeredPartys = new ArrayList();
+    private Set<Party> registeredPartys = new HashSet();
 
     // unique UUID created for every Auction
     private String auctionuuid = UUID.randomUUID().toString(); 
@@ -101,12 +107,12 @@ public class Auction {
         this.description = description;
     }
 
-    @OneToMany
-    public List<Party> getRegisteredPartys() {
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public Set<Party> getRegisteredPartys() {
         return registeredPartys;
     }
 
-    public void setRegisteredPartys(List<Party> registeredPartys) {
+    public void setRegisteredPartys(Set<Party> registeredPartys) {
         this.registeredPartys = registeredPartys;
     }
 

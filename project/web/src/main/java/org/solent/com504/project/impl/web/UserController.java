@@ -120,11 +120,15 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String home(Model model) {
+    @Transactional
+    public String home(Model model, Authentication authentication) {
         
         if(!model.containsAttribute("auctionService")){
             model.addAttribute("auctionService", auctionService);
         }
+        
+        LOG.debug("COWABUNGA - " + authentication.getName());
+        model.addAttribute("user", userService.findByUsername(authentication.getName()));
         
         return "home";
     }
@@ -409,6 +413,20 @@ public class UserController {
             auctionService.save(blankAuction);
             blankAuction = new Auction();
             
+            
+            if(!model.containsAttribute("auctionService")){
+                model.addAttribute("auctionService", auctionService);
+            }
+            return "redirect:/home";
+    }
+    
+    @RequestMapping(value={"/registerToAuction"}, method = RequestMethod.POST)
+    public String registerToAuction(Model model,
+            @RequestParam("auctionuuid") String auctionuuid,
+            @RequestParam("partyuuid") String partyuuid,
+            Authentication authentication){
+        
+            auctionService.registerForAuction(auctionuuid, partyuuid);
             
             if(!model.containsAttribute("auctionService")){
                 model.addAttribute("auctionService", auctionService);

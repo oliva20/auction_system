@@ -7,11 +7,13 @@ package org.solent.com504.project.impl.dao.auction.spring;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import org.solent.com504.project.model.auction.dto.Auction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.solent.com504.project.model.auction.dao.AuctionDAO;
 import org.solent.com504.project.impl.dao.auction.springdata.AuctionRepository;
+import org.solent.com504.project.model.party.dto.Party;
 
 
 /**
@@ -62,6 +64,11 @@ public class AuctionDAOImplSpring implements AuctionDAO {
     @Override
     public List<Auction> findActiveOrScheduledBefore(Date time) {
         return auctionRepository.findActiveOrScheduledBefore(time);
+    }
+
+    @Override
+    public void updateAuctionPartys(String auctionuuid, Set<Party> partys) {
+        auctionRepository.updateAuctionPartys(auctionuuid, partys);
     }
 
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="org.solent.com504.project.impl.dao.auction.springdata.test.AuctionRepositoryTest" time="6.048" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="org.solent.com504.project.impl.dao.auction.springdata.test.AuctionRepositoryTest" time="6.231" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>
@@ -61,6 +61,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="org.solent.com504.project.impl.dao.auction.springdata.test.AuctionRepositoryTest" name="test0" time="0.016"/>
+  <testcase classname="org.solent.com504.project.impl.dao.auction.springdata.test.AuctionRepositoryTest" name="test0" time="0.018"/>
   <testcase classname="org.solent.com504.project.impl.dao.auction.springdata.test.AuctionRepositoryTest" name="test1" time="0.138"/>
 </testsuite>

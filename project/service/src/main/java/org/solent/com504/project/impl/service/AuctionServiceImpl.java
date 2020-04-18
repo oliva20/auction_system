@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.logging.log4j.LogManager;
@@ -33,6 +34,7 @@ import org.solent.com504.project.model.auction.service.BankingService;
 import org.solent.com504.project.model.party.dto.Party;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -77,6 +79,7 @@ public class AuctionServiceImpl implements AuctionService, MessageListener {
     //private ConcurrentHashMap<String, Auction> activeAuctions = new ConcurrentHashMap();
     private ConcurrentHashMap<String, Lot> activeLots = new ConcurrentHashMap();
     
+    @Transactional
     @Override
     public synchronized String registerForAuction(String auctionuuid, String partyUuid) {
         LOG.debug("registerForAuction called auctionuuid," + auctionuuid + " partyUuid" + partyUuid);
@@ -92,8 +95,10 @@ public class AuctionServiceImpl implements AuctionService, MessageListener {
             throw new IllegalArgumentException("cannot find party with uuid=" + partyUuid);
         }
         
-        auction.getRegisteredPartys().add(party);
-        auctionDAO.save(auction);
+        Set<Party> aucParty = auction.getRegisteredPartys();
+        aucParty.add(party);
+        
+        auctionDAO.updateAuctionPartys(auctionuuid, aucParty);
 
         // generate auth key
         String authkey = CheckAuth.createAuctionKey(auctionuuid, partyUuid);
