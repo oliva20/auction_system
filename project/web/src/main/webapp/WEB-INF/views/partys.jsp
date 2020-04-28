@@ -47,7 +47,14 @@
                                 <form action="./viewModifyParty" method="GET">
                                     <input type="hidden" name="partyuuid" value="${party.uuid}">
                                 <button class="btn" type="submit" >Modify Party</button>
-                            </form> 
+                                </form> 
+                                <br>
+                                <form action="./deleteParty" method="POST">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="hidden" name="partyuuid" value="${party.uuid}">
+                                <button class="btn" type="submit" >Delete Party</button>
+                                </form> 
+
                         </td>
                     </tr>
                 </c:forEach>

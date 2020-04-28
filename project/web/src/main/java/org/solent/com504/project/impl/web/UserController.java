@@ -425,8 +425,9 @@ public class UserController {
             @RequestParam("auctionuuid") String auctionuuid,
             @RequestParam("partyuuid") String partyuuid,
             Authentication authentication){
-        
-            auctionService.registerForAuction(auctionuuid, partyuuid);
+            
+            //@@@ failing
+//            auctionService.registerForAuction(auctionuuid, partyuuid);
             
             if(!model.containsAttribute("auctionService")){
                 model.addAttribute("auctionService", auctionService);
@@ -510,7 +511,8 @@ public class UserController {
         List<PartyRole> availablePartyRoles = partyService.getAvailablePartyRoles();
         Map<String, String> availablePartyRolesMap = new LinkedHashMap();
         for (PartyRole prole : availablePartyRoles) {
-            availablePartyRolesMap.put(prole.name(), ((prole.equals(party.getPartyRole()) ? "selected" : "")));
+            availablePartyRolesMap.put(prole.name(), ((prole.equals(party.
+                                            getPartyRole()) ? "selected" : "")));
         }
         model.addAttribute("availablePartyRolesMap", availablePartyRolesMap);
 
@@ -521,7 +523,7 @@ public class UserController {
         model.addAttribute("selectedUsersMap", selectedRolesMap);
         return "viewModifyParty";
     }
-
+    
     @RequestMapping(value = {"/viewModifyParty"}, method = RequestMethod.POST)
     public String updateParty(Model model,
             @RequestParam(value = "partyuuid", required = false) String partyuuid,
@@ -541,7 +543,7 @@ public class UserController {
             @RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam(value = "removeUsername", required = false) String removeUsername,
             @RequestParam(value = "addUsers", required = false) List<String> addUsers,
-            Authentication authentication) {
+            Authentication authentication) { //@@@ what does authentication do here? 
 
         LOG.debug("viewModifyParty POST called for partyuuid=" + partyuuid);
         String errorMessage = "";
@@ -674,17 +676,27 @@ public class UserController {
             @RequestParam(value = "partyuuid", required = false) String partyuuid
     ) {
         List<User> userList = userService.findAll();
-
+        
         LOG.debug("addUsersToParty called:");
         for (User user : userList) {
             LOG.debug(" user:" + user);
         }
-
+            
         model.addAttribute("userListSize", userList.size());
         model.addAttribute("userList", userList);
+        //@@@ by adding the userlist to model does it mean that we can access 
+        // it in the view. That's how they communicate between each other.
         model.addAttribute("partyuuid", partyuuid);
 
         return "addUsersToParty";
     }
 
+    @RequestMapping(value = {"/deleteParty"}, method= RequestMethod.POST)
+    public String removePartyByUuid(Model model, @RequestParam(value = "partyuuid",
+            required = true) String partyuuid){
+        LOG.debug("remove party by uuid called");
+        Party party = partyService.findByUuid(partyuuid); 
+        partyService.delete(party);
+        return "redirect:/partys";
+    }
 }
