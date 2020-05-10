@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.solent.com504.project.impl.dao.user.spring.test.RoleDAOTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
