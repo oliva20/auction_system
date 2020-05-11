@@ -31,7 +31,12 @@
         <p>Auction Start: <%=df.format(auction.getStartTime()) %></p>
         <p>Auction Type: <%=auction.getAuctionType().toString()%></p>
         <p>Auction Lot amount: <%=auction.getLots().size()%></p>
-        <button class="btn btn-primary">View Lots</button>
+        
+        <form method="POST" action="./viewAuctionLots">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" form="auctionData"/>
+            <input type="hidden" name="auctionuuid" value="<%= auction.getAuctionuuid() %>" />
+            <input class="btn btn-success" type="submit" value="View Lots"/>
+        </form>
     </div>
     <%}%>
 </main>
