@@ -447,6 +447,22 @@ public class UserController {
         return "partys";
     }
 
+    @RequestMapping(value = {"/viewAuctionLots"}, method = RequestMethod.POST)
+    public String viewAuctionLots(Model model,
+            @RequestParam(value = "auctionuuid") String auctionuuid,
+            Authentication authentication){
+        
+        if(!model.containsAttribute("auctionService")){
+            model.addAttribute("auctionService", auctionService);
+        }
+        
+        if(!model.containsAttribute("selectedAuction")){
+            model.addAttribute("selectedAuction", auctionuuid); // adding the auction uuid to the model so we can use it in the jsp to find the lots in said auction
+        }
+        
+        return "viewAuctionLots";
+    }
+    
     @RequestMapping(value = {"/partys"}, method = RequestMethod.POST)
     @Transactional
     public String changePartys(Model model) {
