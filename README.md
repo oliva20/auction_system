@@ -1,8 +1,8 @@
 ## Auction system for COM600.
 Using web sockets. 
 
-*** Requires: ***
+***Requires:***
 - Maven
 
-*** Running the Project ***
+***Running the Project***
 ``` mvn clean install ```
